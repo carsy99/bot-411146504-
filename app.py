@@ -47,30 +47,30 @@ def handle_message(event):
         imagemap_message = ImagemapSendMessage(
             base_url='https://i.imgur.com/AjSt5jd.jpeg',
             alt_text='組圖訊息',
-            base_size=BaseSize(height=2000, width=2000),
+            base_size=BaseSize(height=1040, width=1040),
             actions=[
                 URIImagemapAction(
                     link_uri='https://www.facebook.com/2017Ninja.Sushi/',#日料左上
                     area=ImagemapArea(
-                        x=0, y=0, width=1000, height=1000
+                        x=0, y=0, width=520, height=520
                     )
                 ),
                 URIImagemapAction(
                     link_uri='http://www.facebook.com/PUROtaverna',#西式右上
                     area=ImagemapArea(
-                        x=1000, y=0, width=1000, height=1000
+                        x=520, y=0, width=520, height=520
                     )
                 ),
                 URIImagemapAction(
                     link_uri='https://www.facebook.com/yangsbeefnoodle/',#中式左下
                     area=ImagemapArea(
-                        x=0, y=1000, width=1000, height=1000
+                        x=0, y=520, width=520, height=520
                     )
                 ),
                 URIImagemapAction(
                     link_uri='https://www.windsortaiwan.com/tw/food/2C25b1caC2E19A4c',#法式右下
                     area=ImagemapArea(
-                        x=1000, y=1000, width=1000, height=1000
+                        x=520, y=520, width=520, height=520
                     )
                 )
             ]
