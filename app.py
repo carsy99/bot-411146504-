@@ -45,7 +45,7 @@ def handle_message(event):
     message = text=event.message.text
     if re.match('推薦餐廳',message):
         imagemap_message = ImagemapSendMessage(
-            base_url='https://drive.google.com/file/d/1728h59a4-pM2_MK0W7eTGnwyoxYfg6Q4/view?usp=drive_link',
+            base_url='https://drive.google.com/file/d/1728h59a4-pM2_MK0W7eTGnwyoxYfg6Q4/view?usp=sharing',
             alt_text='組圖訊息',
             base_size=BaseSize(height=2000, width=2000),
             actions=[
