@@ -41,15 +41,41 @@ def callback():
 #訊息傳遞區塊
 ##### 基本上程式編輯都在這個function #####
 @handler.add(MessageEvent, message=TextMessage)
-@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = text=event.message.text
-    if re.match('告訴我秘密',message):
-        image_message = ImageSendMessage(
-            original_content_url='https://www.campus-studio.com/download/flag.jpg',
-            preview_image_url='https://www.campus-studio.com/download/101.jpg'
+   message = text=event.message.text
+    if re.match('推薦餐廳',message):
+        imagemap_message = ImagemapSendMessage(
+            base_url='https://drive.google.com/file/d/1728h59a4-pM2_MK0W7eTGnwyoxYfg6Q4/view?usp=drive_link',
+            alt_text='組圖訊息',
+            base_size=BaseSize(height=2000, width=2000),
+            actions=[
+                URIImagemapAction(
+                    link_uri='https://www.facebook.com/2017Ninja.Sushi/',#日料左上
+                    area=ImagemapArea(
+                        x=0, y=0, width=1000, height=1000
+                    )
+                ),
+                URIImagemapAction(
+                    link_uri='http://www.facebook.com/PUROtaverna',#西式右上
+                    area=ImagemapArea(
+                        x=1000, y=0, width=1000, height=1000
+                    )
+                ),
+                URIImagemapAction(
+                    link_uri='https://www.facebook.com/yangsbeefnoodle/',#中式左下
+                    area=ImagemapArea(
+                        x=0, y=1000, width=1000, height=1000
+                    )
+                ),
+                URIImagemapAction(
+                    link_uri='https://www.windsortaiwan.com/tw/food/2C25b1caC2E19A4c',#法式右下
+                    area=ImagemapArea(
+                        x=1000, y=1000, width=1000, height=1000
+                    )
+                )
+            ]
         )
-        line_bot_api.reply_message(event.reply_token, image_message)
+        line_bot_api.reply_message(event.reply_token, imagemap_message)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
         
