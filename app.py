@@ -45,7 +45,7 @@ def handle_message(event):
     message = text=event.message.text
     if re.match('推薦餐廳',message):
         imagemap_message = ImagemapSendMessage(
-            base_url='https://imgur.com/a/Ma9sbhe',
+            base_url='https://i.imgur.com/AjSt5jd.jpeg',
             alt_text='組圖訊息',
             base_size=BaseSize(height=2000, width=2000),
             actions=[
