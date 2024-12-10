@@ -42,7 +42,7 @@ def callback():
 ##### 基本上程式編輯都在這個function #####
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-   message = text=event.message.text
+    message = text=event.message.text
     if re.match('推薦餐廳',message):
         imagemap_message = ImagemapSendMessage(
             base_url='https://drive.google.com/file/d/1728h59a4-pM2_MK0W7eTGnwyoxYfg6Q4/view?usp=drive_link',
