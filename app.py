@@ -52,25 +52,25 @@ def handle_message(event):
                 URIImagemapAction(
                     link_uri='https://www.facebook.com/2017Ninja.Sushi/',#日料左上
                     area=ImagemapArea(
-                        x=0, y=0, width=520, height=520
+                        x=0, y=0, width=1000, height=1000
                     )
                 ),
                 URIImagemapAction(
                     link_uri='http://www.facebook.com/PUROtaverna',#西式右上
                     area=ImagemapArea(
-                        x=520, y=0, width=520, height=520
+                        x=1000, y=0, width=1000, height=1000
                     )
                 ),
                 URIImagemapAction(
                     link_uri='https://www.facebook.com/yangsbeefnoodle/',#中式左下
                     area=ImagemapArea(
-                        x=0, y=520, width=520, height=520
+                        x=0, y=1000, width=1000, height=1000
                     )
                 ),
                 URIImagemapAction(
                     link_uri='https://www.windsortaiwan.com/tw/food/2C25b1caC2E19A4c',#法式右下
                     area=ImagemapArea(
-                        x=520, y=520, width=520, height=520
+                        x=1000, y=1000, width=1000, height=1000
                     )
                 )
             ]
