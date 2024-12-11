@@ -130,6 +130,29 @@ def handle_message(event):
         except Exception as e:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"推薦景點功能發生錯誤：{str(e)}"))
 
+    # 我要訂餐功能
+    elif message == "我要訂餐":
+        try:
+            confirm_template = TemplateSendMessage(
+                alt_text='訂餐確認',
+                template=ConfirmTemplate(
+                    text='無敵好吃牛肉麵 * 1 ，總價NT200',
+                    actions=[
+                        MessageAction(
+                            label='確定',
+                            text='訂單已確認，謝謝您的購買！'
+                        ),
+                        MessageAction(
+                            label='取消',
+                            text='已取消訂單，謝謝您的光臨！'
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, confirm_template)
+        except Exception as e:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"訂餐功能發生錯誤：{str(e)}"))
+
     # 未知指令處理
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="無法識別的指令"))
