@@ -10,6 +10,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from datetime import datetime
+import pytz
 from linebot.models import *
 import re
 app = Flask(__name__)
@@ -387,7 +388,8 @@ def handle_message(event):
     elif message == "我要點餐":
         try:
             # 取得當前時間
-            current_hour = datetime.now().hour
+            taipei_timezone = pytz.timezone("Asia/Taipei")
+            current_hour = datetime.now(taipei_timezone).hour
             
             # 定義三個菜單
             breakfast_menu = FlexSendMessage(
