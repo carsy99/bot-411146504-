@@ -73,7 +73,6 @@ def handle_message(event):
 
     # 推薦景點功能
     elif message == "推薦景點":
-        try:
             carousel_template_message = TemplateSendMessage(
                 alt_text='熱門旅行景點',
                 template=CarouselTemplate(
@@ -127,8 +126,6 @@ def handle_message(event):
                 )
             )
             line_bot_api.reply_message(event.reply_token, carousel_template_message)
-        except Exception as e:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"推薦景點功能發生錯誤：{str(e)}"))
 
     # 未知指令處理
     else:
