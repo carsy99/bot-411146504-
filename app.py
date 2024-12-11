@@ -175,6 +175,48 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, quick_reply_buttons)
         except Exception as e:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"功能發生錯誤：{str(e)}"))
+
+    # 電影推薦功能
+    elif message == "電影推薦":
+        try:
+            image_carousel_template = TemplateSendMessage(
+                alt_text='電影推薦',
+                template=ImageCarouselTemplate(
+                    columns=[
+                        ImageCarouselColumn(
+                            image_url='https://upload.wikimedia.org/wikipedia/zh/a/af/Shawshank_Redemption_ver2.jpg',  # 確保 URL 可用
+                            action=URIAction(
+                                label='查看詳細資訊',
+                                uri='https://www.imdb.com/title/tt0111161/'  # 例如《肖申克的救贖》
+                            )
+                        ),
+                        ImageCarouselColumn(
+                            image_url='https://pic.pimg.tw/tony871204/1587345864-1851924135_wn.jpg',  # 確保 URL 可用
+                            action=URIAction(
+                                label='查看詳細資訊',
+                                uri='https://www.imdb.com/title/tt0068646/'  # 例如《教父》
+                            )
+                        ),
+                        ImageCarouselColumn(
+                            image_url='https://upload.wikimedia.org/wikipedia/zh/7/7f/Inception_ver3.jpg',  # 確保 URL 可用
+                            action=URIAction(
+                                label='查看詳細資訊',
+                                uri='https://www.imdb.com/title/tt1375666/'  # 例如《全面啟動》
+                            )
+                        ),
+                        ImageCarouselColumn(
+                            image_url='https://upload.wikimedia.org/wikipedia/zh/a/ad/Forrestgumppost.jpg',  # 確保 URL 可用
+                            action=URIAction(
+                                label='查看詳細資訊',
+                                uri='https://www.imdb.com/title/tt0109830/'  # 例如《阿甘正傳》
+                            )
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, image_carousel_template)
+        except Exception as e:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"電影推薦功能發生錯誤：{str(e)}"))
     
     # 未知指令處理
     else:
