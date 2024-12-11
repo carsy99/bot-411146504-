@@ -72,63 +72,63 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, imagemap_message)
 
     # 推薦景點功能
-elif message == "推薦景點":
-    try:
-        carousel_template_message = TemplateSendMessage(
-            alt_text='熱門旅行景點',
-            template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/kNBl363.jpg',  # 確認圖片有效
-                        title='台北101',
-                        text='台灣最高的摩天大樓。',
-                        actions=[
-                            URIAction(
-                                label='查看詳細資訊',
-                                uri='https://zh.wikipedia.org/wiki/%E5%8F%B0%E5%8C%97%E5%8D%81%E4%B8%80'
-                            ),
-                            URIAction(
-                                label='導航至此',
-                                uri='https://www.google.com/maps?q=台北101'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/GBPcUEP.png',  # 確認圖片有效
-                        title='金閣寺',
-                        text='京都著名的世界遺產。',
-                        actions=[
-                            URIAction(
-                                label='查看詳細資訊',
-                                uri='https://zh.wikipedia.org/wiki/%E9%87%91%E9%96%A3%E5%AF%BA'
-                            ),
-                            URIAction(
-                                label='導航至此',
-                                uri='https://www.google.com/maps?q=金閣寺'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/kRW5zTO.png',  # 確認圖片有效
-                        title='首爾塔',
-                        text='首爾的標誌性建築物。',
-                        actions=[
-                            URIAction(
-                                label='查看詳細資訊',
-                                uri='https://zh.wikipedia.org/wiki/%E9%87%91%E9%96%A3%E5%AF%BA'
-                            ),
-                            URIAction(
-                                label='導航至此',
-                                uri='https://www.google.com/maps?q=首爾塔'
-                            )
-                        ]
-                    )
-                ]
+    elif message == "推薦景點":
+        try:
+            carousel_template_message = TemplateSendMessage(
+                alt_text='熱門旅行景點',
+                template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/kNBl363.jpg',  # 確認圖片有效
+                            title='台北101',
+                            text='台灣最高的摩天大樓。',
+                            actions=[
+                                URIAction(
+                                    label='查看詳細資訊',
+                                    uri='https://zh.wikipedia.org/wiki/%E5%8F%B0%E5%8C%97%E5%8D%81%E4%B8%80'
+                                ),
+                                URIAction(
+                                    label='導航至此',
+                                    uri='https://www.google.com/maps?q=台北101'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/GBPcUEP.png',  # 確認圖片有效
+                            title='金閣寺',
+                            text='京都著名的世界遺產。',
+                            actions=[
+                                URIAction(
+                                    label='查看詳細資訊',
+                                    uri='https://zh.wikipedia.org/wiki/%E9%87%91%E9%96%A3%E5%AF%BA'
+                                ),
+                                URIAction(
+                                    label='導航至此',
+                                    uri='https://www.google.com/maps?q=金閣寺'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/kRW5zTO.png',  # 確認圖片有效
+                            title='首爾塔',
+                            text='首爾的標誌性建築物。',
+                            actions=[
+                                URIAction(
+                                    label='查看詳細資訊',
+                                    uri='https://zh.wikipedia.org/wiki/%E9%87%91%E9%96%A3%E5%AF%BA'
+                                ),
+                                URIAction(
+                                    label='導航至此',
+                                    uri='https://www.google.com/maps?q=首爾塔'
+                                )
+                            ]
+                        )
+                    ]
+                )
             )
-        )
-        line_bot_api.reply_message(event.reply_token, carousel_template_message)
-    except Exception as e:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"推薦景點功能發生錯誤：{str(e)}"))
+            line_bot_api.reply_message(event.reply_token, carousel_template_message)
+        except Exception as e:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"推薦景點功能發生錯誤：{str(e)}"))
 
     # 未知指令處理
     else:
