@@ -153,6 +153,29 @@ def handle_message(event):
         except Exception as e:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"訂餐功能發生錯誤：{str(e)}"))
 
+    # 我想吃飯功能
+    elif message == "我想吃飯":
+        try:
+            quick_reply_buttons = TextSendMessage(
+                text='請選擇您想加入購物車的品項：',
+                quick_reply=QuickReply(
+                    items=[
+                        QuickReplyButton(
+                            action=MessageAction(label="主菜", text="您已成功將【主菜】加入購物車")
+                        ),
+                        QuickReplyButton(
+                            action=MessageAction(label="湯品", text="您已成功將【湯品】加入購物車")
+                        ),
+                        QuickReplyButton(
+                            action=MessageAction(label="飲料", text="您已成功將【飲料】加入購物車")
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, quick_reply_buttons)
+        except Exception as e:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"功能發生錯誤：{str(e)}"))
+    
     # 未知指令處理
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="無法識別的指令"))
