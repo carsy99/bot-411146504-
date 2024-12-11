@@ -73,7 +73,6 @@ def handle_message(event):
 
     # 推薦景點功能
     elif message == "推薦景點":
-    try:
         carousel_template_message = TemplateSendMessage(
             alt_text='熱門旅行景點',
             template=CarouselTemplate(
