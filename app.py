@@ -544,14 +544,14 @@ def handle_message(event):
                         )
                     ),
                     ImageCarouselColumn(
-                        image_url="https://www.kkday.com/zh-tw/blog/wp-content/uploads/567-13-1.jpg",  # 幻覺博物館 圖片
+                        image_url="https://imccp.com/wp-content/uploads/20211016154250_25.jpg",  # 幻覺博物館 圖片
                         action=PostbackAction(
                             label="查看詳細資訊",
                             data="details_location2"  # 景點 2 詳細資訊的回呼資料
                         )
                     ),
                     ImageCarouselColumn(
-                        image_url="https://cloud.culture.tw/e_new_upload/task/2f6fa2ce-e210-42b9-b6e2-c67c9bc0116b/832a481125e0d94f36aff3b6893e012fbdc4e9e7354db024bb8db60e945b6fe669422d251f886bbd518fd35bc8e50ded739a5f9614b69fffd589b49a61c46989/270bef16ed25e853100dcb21407e2752709e8d7d.jpg",  # 壽山動物園 圖片
+                        image_url="https://taiwan.sharelife.tw/tw-news-img/64026/da76150422575416.jpg",  # 壽山動物園 圖片
                         action=PostbackAction(
                             label="查看詳細資訊",
                             data="details_location3"  # 景點 3 詳細資訊的回呼資料
