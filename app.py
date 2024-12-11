@@ -73,12 +73,13 @@ def handle_message(event):
 
     # 推薦景點功能
     elif message == "推薦景點":
+    try:
         carousel_template_message = TemplateSendMessage(
             alt_text='熱門旅行景點',
             template=CarouselTemplate(
                 columns=[
                     CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/kNBl363.jpg',
+                        thumbnail_image_url='https://i.imgur.com/kNBl363.jpg',  # 確認圖片有效
                         title='台北101',
                         text='台灣最高的摩天大樓。',
                         actions=[
@@ -93,7 +94,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/GBPcUEP.png',
+                        thumbnail_image_url='https://i.imgur.com/GBPcUEP.png',  # 確認圖片有效
                         title='金閣寺',
                         text='京都著名的世界遺產。',
                         actions=[
@@ -108,7 +109,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/kRW5zTO.png',
+                        thumbnail_image_url='https://i.imgur.com/kRW5zTO.png',  # 確認圖片有效
                         title='首爾塔',
                         text='首爾的標誌性建築物。',
                         actions=[
