@@ -507,6 +507,60 @@ def handle_message(event):
 
         except Exception as e:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"點餐功能發生錯誤：{str(e)}"))
+
+    # 旅遊景點推薦功能
+    elif message == "旅遊推薦":
+        # 建立 ImageCarouselTemplate
+        image_carousel_template = TemplateSendMessage(
+            alt_text="旅遊景點推薦",
+            template=ImageCarouselTemplate(
+                columns=[
+                    ImageCarouselColumn(
+                        image_url="https://img.ltn.com.tw/Upload/news/600/2022/09/28/php0uQ8hl.jpg",  # 國立中正紀念堂 圖片
+                        action=PostbackAction(
+                            label="查看詳細資訊",
+                            data="details_location1"  # 景點 1 詳細資訊的回呼資料
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://www.kkday.com/zh-tw/blog/wp-content/uploads/567-13-1.jpg",  # 幻覺博物館 圖片
+                        action=PostbackAction(
+                            label="查看詳細資訊",
+                            data="details_location2"  # 景點 2 詳細資訊的回呼資料
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://cloud.culture.tw/e_new_upload/task/2f6fa2ce-e210-42b9-b6e2-c67c9bc0116b/832a481125e0d94f36aff3b6893e012fbdc4e9e7354db024bb8db60e945b6fe669422d251f886bbd518fd35bc8e50ded739a5f9614b69fffd589b49a61c46989/270bef16ed25e853100dcb21407e2752709e8d7d.jpg",  # 壽山動物園 圖片
+                        action=PostbackAction(
+                            label="查看詳細資訊",
+                            data="details_location3"  # 景點 3 詳細資訊的回呼資料
+                        )
+                    )
+                ]
+            )
+        )
+        # 回應使用者
+        line_bot_api.reply_message(event.reply_token, image_carousel_template)
+
+    # 處理回呼（詳細資訊）
+    elif isinstance(event.message, PostbackEvent):
+        if event.postback.data == "details_location1":
+            details = TextSendMessage(
+                text="景點 1: \n地址: 台北市中正區\n開放時間: 9:00 - 18:00\n票價: 免費\n"
+            )
+            line_bot_api.reply_message(event.reply_token, details)
+        elif event.postback.data == "details_location2":
+            details = TextSendMessage(
+                text="景點 2: \n地址: 台中市西區\n開放時間: 10:30 - 18:00\n票價: $380\n"
+            )
+            line_bot_api.reply_message(event.reply_token, details)
+        elif event.postback.data == "details_location3":
+            details = TextSendMessage(
+                text="景點 3: \n地址: 高雄市鼓山區\n開放時間: 9:00 - 16:30\n票價: $40\n"
+            )
+            line_bot_api.reply_message(event.reply_token, details)
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="無效的選擇！"))
     
     # 未知指令處理
     else:
