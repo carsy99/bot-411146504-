@@ -543,7 +543,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, image_carousel_template)
 
     # 處理回呼（詳細資訊）
-    elif isinstance(event.message, PostbackEvent):
+    @handler.add(PostbackEvent)
+    def handle_postback(event):
         if event.postback.data == "details_location1":
             details = TextSendMessage(
                 text="景點 1: \n地址: 台北市中正區\n開放時間: 9:00 - 18:00\n票價: 免費\n"
