@@ -76,6 +76,63 @@ def handle_message(event):
             ]
         )
         line_bot_api.reply_message(event.reply_token, imagemap_message)
+    
+    # 推薦景點功能
+    elif re.match('推薦景點', message):
+        carousel_template_message = TemplateSendMessage( 
+            alt_text='熱門旅行景點',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Taipei_101_from_Xiangshan_20240729.jpg/250px-Taipei_101_from_Xiangshan_20240729.jpg',
+                        title='台北101',
+                        text='台灣最高的摩天大樓。',
+                        actions=[
+                            URIAction(
+                                label='查看詳細資訊',
+                                uri='https://zh.wikipedia.org/zh-tw/%E5%8F%B0%E5%8C%97101'
+                            ),
+                            URIAction(
+                                label='導航至此',
+                                uri='https://www.google.com/maps?q=台北101'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://i.imgur.com/GBPcUEP.png',
+                        title='金閣寺',
+                        text='京都著名的世界遺產。',
+                        actions=[
+                            URIAction(
+                                label='查看詳細資訊',
+                                uri='https://zh.wikipedia.org/wiki/%E9%87%91%E9%96%A3%E5%AF%BA'
+                            ),
+                            URIAction(
+                                label='導航至此',
+                                uri='https://www.google.com/maps?q=金閣寺'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://i.imgur.com/kRW5zTO.png',
+                        title='首爾塔',
+                        text='首爾的標誌性建築物。',
+                        actions=[
+                            URIAction(
+                                label='查看詳細資訊',
+                                uri='https://zh.wikipedia.org/wiki/%E5%8C%97%E9%87%91%E5%B1%B1%E5%AF%BA'
+                            ),
+                            URIAction(
+                                label='導航至此',
+                                uri='https://www.google.com/maps?q=首爾塔'
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, carousel_template_message)
+    
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
         
