@@ -84,13 +84,13 @@ def handle_message(event):
             template=CarouselTemplate(
                 columns=[
                     CarouselColumn(
-                        thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Taipei_101_from_Xiangshan_20240729.jpg/250px-Taipei_101_from_Xiangshan_20240729.jpg',
+                        thumbnail_image_url='https://i.imgur.com/kNBl363.jpg',
                         title='台北101',
                         text='台灣最高的摩天大樓。',
                         actions=[
                             URIAction(
                                 label='查看詳細資訊',
-                                uri='https://zh.wikipedia.org/zh-tw/%E5%8F%B0%E5%8C%97101'
+                                uri='https://zh.wikipedia.org/wiki/%E5%8F%B0%E5%8C%97%E5%8D%81%E4%B8%80'
                             ),
                             URIAction(
                                 label='導航至此',
