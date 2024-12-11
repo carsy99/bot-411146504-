@@ -40,6 +40,27 @@ def callback():
 
     return 'OK'
 
+# 處理 PostbackEvent
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    data = event.postback.data
+    if data == "details_location1":
+        details = TextSendMessage(
+            text="景點 1: 國立中正紀念堂\n地址: 台北市中正區\n開放時間: 9:00 - 18:00\n票價: 免費\n特色: 紀念中正先生的重要歷史場所"
+        )
+    elif data == "details_location2":
+        details = TextSendMessage(
+            text="景點 2: 幻覺博物館\n地址: 台中市西區\n開放時間: 10:30 - 18:00\n票價: $380\n特色: 充滿視覺錯覺和互動展品"
+        )
+    elif data == "details_location3":
+        details = TextSendMessage(
+            text="景點 3: 壽山動物園\n地址: 高雄市鼓山區\n開放時間: 9:00 - 16:30\n票價: $40\n特色: 提供豐富的動物生態教育"
+        )
+    else:
+        details = TextSendMessage(text="無效的選擇！")
+    
+    line_bot_api.reply_message(event.reply_token, details)
+
 #訊息傳遞區塊
 ##### 基本上程式編輯都在這個function #####
 @handler.add(MessageEvent, message=TextMessage)
@@ -542,26 +563,6 @@ def handle_message(event):
         # 回應使用者
         line_bot_api.reply_message(event.reply_token, image_carousel_template)
 
-    # 處理回呼（詳細資訊）
-    @handler.add(PostbackEvent)
-    def handle_postback(event):
-        if event.postback.data == "details_location1":
-            details = TextSendMessage(
-                text="景點 1: \n地址: 台北市中正區\n開放時間: 9:00 - 18:00\n票價: 免費\n"
-            )
-            line_bot_api.reply_message(event.reply_token, details)
-        elif event.postback.data == "details_location2":
-            details = TextSendMessage(
-                text="景點 2: \n地址: 台中市西區\n開放時間: 10:30 - 18:00\n票價: $380\n"
-            )
-            line_bot_api.reply_message(event.reply_token, details)
-        elif event.postback.data == "details_location3":
-            details = TextSendMessage(
-                text="景點 3: \n地址: 高雄市鼓山區\n開放時間: 9:00 - 16:30\n票價: $40\n"
-            )
-            line_bot_api.reply_message(event.reply_token, details)
-        else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="無效的選擇！"))
     
     # 未知指令處理
     else:
