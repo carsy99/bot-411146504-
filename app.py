@@ -72,7 +72,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, imagemap_message)
 
     # 推薦景點功能
-    elif message == "推薦景點":
+elif message == "推薦景點":
+    try:
         carousel_template_message = TemplateSendMessage(
             alt_text='熱門旅行景點',
             template=CarouselTemplate(
@@ -114,7 +115,7 @@ def handle_message(event):
                         actions=[
                             URIAction(
                                 label='查看詳細資訊',
-                                uri='https://zh.wikipedia.org/wiki/%E5%8C%97%E9%87%91%E5%B1%B1%E5%AF%BA'
+                                uri='https://zh.wikipedia.org/wiki/%E9%87%91%E9%96%A3%E5%AF%BA'
                             ),
                             URIAction(
                                 label='導航至此',
@@ -126,6 +127,8 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
+    except Exception as e:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"推薦景點功能發生錯誤：{str(e)}"))
 
     # 未知指令處理
     else:
