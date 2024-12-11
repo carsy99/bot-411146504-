@@ -9,6 +9,7 @@ from linebot import (
 from linebot.exceptions import (
     InvalidSignatureError
 )
+from datetime import datetime
 from linebot.models import *
 import re
 app = Flask(__name__)
@@ -381,6 +382,129 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, flex_message)
         except Exception as e:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"菜單推薦功能發生錯誤：{str(e)}"))
+
+    # 我要點餐功能
+    elif message == "我要點餐":
+        try:
+            # 取得當前時間
+            current_hour = datetime.now().hour
+            
+            # 定義三個菜單
+            breakfast_menu = FlexSendMessage(
+                alt_text="早餐菜單",
+                contents={
+                    "type": "carousel",
+                    "contents": [
+                        {
+                            "type": "bubble",
+                            "hero": {
+                                "type": "image",
+                                "url": "https://d3l76hx23vw40a.cloudfront.net/recipe/gy44-046.jpg",
+                                "size": "full",
+                                "aspectRatio": "20:13",
+                                "aspectMode": "cover"
+                            },
+                            "body": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {"type": "text", "text": "培根蛋餅", "weight": "bold", "size": "xl"},
+                                    {"type": "text", "text": "價格: NT$50", "size": "sm", "color": "#555555"}
+                                ]
+                            },
+                            "footer": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {"type": "button", "style": "primary", 
+                                     "action": {"type": "message", "label": "訂購", "text": "已加入購物車: 培根蛋餅"}}
+                                ]
+                            }
+                        }
+                    ]
+                }
+            )
+            
+            lunch_menu = FlexSendMessage(
+                alt_text="午餐菜單",
+                contents={
+                    "type": "carousel",
+                    "contents": [
+                        {
+                            "type": "bubble",
+                            "hero": {
+                                "type": "image",
+                                "url": "https://i.imgur.com/PHn90Ao.jpeg",
+                                "size": "full",
+                                "aspectRatio": "20:13",
+                                "aspectMode": "cover"
+                            },
+                            "body": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {"type": "text", "text": "海鮮燉飯", "weight": "bold", "size": "xl"},
+                                    {"type": "text", "text": "價格: NT$350", "size": "sm", "color": "#555555"}
+                                ]
+                            },
+                            "footer": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {"type": "button", "style": "primary", 
+                                     "action": {"type": "message", "label": "訂購", "text": "已加入購物車: 海鮮燉飯"}}
+                                ]
+                            }
+                        }
+                    ]
+                }
+            )
+
+            dinner_menu = FlexSendMessage(
+                alt_text="晚餐菜單",
+                contents={
+                    "type": "carousel",
+                    "contents": [
+                        {
+                            "type": "bubble",
+                            "hero": {
+                                "type": "image",
+                                "url": "https://sylvia128.com/wp-content/uploads/xuite/20518823-1231793020_o.jpg",
+                                "size": "full",
+                                "aspectRatio": "20:13",
+                                "aspectMode": "cover"
+                            },
+                            "body": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {"type": "text", "text": "牛排", "weight": "bold", "size": "xl"},
+                                    {"type": "text", "text": "價格: NT$500", "size": "sm", "color": "#555555"}
+                                ]
+                            },
+                            "footer": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {"type": "button", "style": "primary", 
+                                     "action": {"type": "message", "label": "訂購", "text": "已加入購物車: 牛排"}}
+                                ]
+                            }
+                        }
+                    ]
+                }
+            )
+            
+            # 根據時間回應菜單
+            if 6 <= current_hour < 11:  # 早餐時段
+                line_bot_api.reply_message(event.reply_token, breakfast_menu)
+            elif 11 <= current_hour < 17:  # 午餐時段
+                line_bot_api.reply_message(event.reply_token, lunch_menu)
+            else:  # 晚餐時段
+                line_bot_api.reply_message(event.reply_token, dinner_menu)
+
+        except Exception as e:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"點餐功能發生錯誤：{str(e)}"))
     
     # 未知指令處理
     else:
