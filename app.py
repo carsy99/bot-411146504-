@@ -217,6 +217,170 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, image_carousel_template)
         except Exception as e:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"電影推薦功能發生錯誤：{str(e)}"))
+    # 餐廳菜單推薦系統
+    elif message == "查看菜單":
+        try:
+            flex_message = FlexSendMessage(
+                alt_text="餐廳菜單",
+                contents={
+                    "type": "carousel",
+                    "contents": [
+                        {
+                            "type": "bubble",
+                            "hero": {
+                                "type": "image",
+                                "url": "https://i.imgur.com/abc123.jpg",
+                                "size": "full",
+                                "aspectRatio": "20:13",
+                                "aspectMode": "cover"
+                            },
+                            "body": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "招牌牛排",
+                                        "weight": "bold",
+                                        "size": "xl"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "嫩滑多汁的高品質牛排，搭配特製醬汁",
+                                        "size": "sm",
+                                        "wrap": True
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "價格: NT$500",
+                                        "size": "sm",
+                                        "color": "#555555"
+                                    }
+                                ]
+                            },
+                            "footer": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "spacing": "sm",
+                                "contents": [
+                                    {
+                                        "type": "button",
+                                        "style": "primary",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "訂購",
+                                            "text": "已加入購物車: 招牌牛排"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "bubble",
+                            "hero": {
+                                "type": "image",
+                                "url": "https://i.imgur.com/xyz456.jpg",
+                                "size": "full",
+                                "aspectRatio": "20:13",
+                                "aspectMode": "cover"
+                            },
+                            "body": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "海鮮燉飯",
+                                        "weight": "bold",
+                                        "size": "xl"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "新鮮海鮮與濃郁米飯的絕妙搭配",
+                                        "size": "sm",
+                                        "wrap": True
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "價格: NT$350",
+                                        "size": "sm",
+                                        "color": "#555555"
+                                    }
+                                ]
+                            },
+                            "footer": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "spacing": "sm",
+                                "contents": [
+                                    {
+                                        "type": "button",
+                                        "style": "primary",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "訂購",
+                                            "text": "已加入購物車: 海鮮燉飯"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "bubble",
+                            "hero": {
+                                "type": "image",
+                                "url": "https://i.imgur.com/lmn789.jpg",
+                                "size": "full",
+                                "aspectRatio": "20:13",
+                                "aspectMode": "cover"
+                            },
+                            "body": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "巧克力熔岩蛋糕",
+                                        "weight": "bold",
+                                        "size": "xl"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "濃郁巧克力與香甜內餡的完美融合",
+                                        "size": "sm",
+                                        "wrap": True
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "價格: NT$150",
+                                        "size": "sm",
+                                        "color": "#555555"
+                                    }
+                                ]
+                            },
+                            "footer": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "spacing": "sm",
+                                "contents": [
+                                    {
+                                        "type": "button",
+                                        "style": "primary",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "訂購",
+                                            "text": "已加入購物車: 巧克力熔岩蛋糕"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            )
+            line_bot_api.reply_message(event.reply_token, flex_message)
+        except Exception as e:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"菜單推薦功能發生錯誤：{str(e)}"))
     
     # 未知指令處理
     else:
