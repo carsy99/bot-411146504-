@@ -42,33 +42,33 @@ def callback():
 ##### 基本上程式編輯都在這個function #####
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = text=event.message.text
-    if re.match('推薦餐廳',message):
+    message = event.message.text.strip()  # 確保去除多餘空格
+    if re.match('推薦餐廳', message):
         imagemap_message = ImagemapSendMessage(
             base_url='https://i.imgur.com/AjSt5jd.jpeg',
             alt_text='組圖訊息',
             base_size=BaseSize(height=1040, width=1040),
             actions=[
                 URIImagemapAction(
-                    link_uri='https://www.facebook.com/2017Ninja.Sushi/',#日料左上
+                    link_uri='https://www.facebook.com/2017Ninja.Sushi/',  # 日料左上
                     area=ImagemapArea(
                         x=0, y=0, width=700, height=700
                     )
                 ),
                 URIImagemapAction(
-                    link_uri='http://www.facebook.com/PUROtaverna',#西式右上
+                    link_uri='http://www.facebook.com/PUROtaverna',  # 西式右上
                     area=ImagemapArea(
                         x=700, y=0, width=700, height=700
                     )
                 ),
                 URIImagemapAction(
-                    link_uri='https://www.facebook.com/yangsbeefnoodle/',#中式左下
+                    link_uri='https://www.facebook.com/yangsbeefnoodle/',  # 中式左下
                     area=ImagemapArea(
                         x=0, y=700, width=700, height=700
                     )
                 ),
                 URIImagemapAction(
-                    link_uri='https://www.windsortaiwan.com/tw/food/2C25b1caC2E19A4c',#法式右下
+                    link_uri='https://www.windsortaiwan.com/tw/food/2C25b1caC2E19A4c',  # 法式右下
                     area=ImagemapArea(
                         x=700, y=700, width=700, height=700
                     )
@@ -76,10 +76,9 @@ def handle_message(event):
             ]
         )
         line_bot_api.reply_message(event.reply_token, imagemap_message)
-    
-    # 推薦景點功能
+
     elif re.match('推薦景點', message):
-        carousel_template_message = TemplateSendMessage( 
+        carousel_template_message = TemplateSendMessage(
             alt_text='熱門旅行景點',
             template=CarouselTemplate(
                 columns=[
@@ -132,9 +131,9 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
-    
+
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
         
 #主程式
 import os
