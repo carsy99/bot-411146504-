@@ -229,7 +229,7 @@ def handle_message(event):
                             "type": "bubble",
                             "hero": {
                                 "type": "image",
-                                "url": "https://i.imgur.com/abc123.jpg",
+                                "url": "https://sylvia128.com/wp-content/uploads/xuite/20518823-1231793020_o.jpg",
                                 "size": "full",
                                 "aspectRatio": "20:13",
                                 "aspectMode": "cover"
@@ -279,7 +279,7 @@ def handle_message(event):
                             "type": "bubble",
                             "hero": {
                                 "type": "image",
-                                "url": "https://i.imgur.com/xyz456.jpg",
+                                "url": "https://i.imgur.com/PHn90Ao.jpeg",
                                 "size": "full",
                                 "aspectRatio": "20:13",
                                 "aspectMode": "cover"
@@ -329,7 +329,7 @@ def handle_message(event):
                             "type": "bubble",
                             "hero": {
                                 "type": "image",
-                                "url": "https://i.imgur.com/lmn789.jpg",
+                                "url": "https://pmst.panasonic.com.tw/panasoniccooking/imgs/LoveCookingRecipe/3413/20170418151840_33.jpg",
                                 "size": "full",
                                 "aspectRatio": "20:13",
                                 "aspectMode": "cover"
